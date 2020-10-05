@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/default/catkin_ws/devel/include/**",
+        "/opt/ros/kinetic/include/**",
+        "/home/default/catkin_ws/src/gazebo_ros_pkgs/gazebo_plugins/include/**",
+        "/home/default/catkin_ws/src/gazebo_ros_pkgs/gazebo_ros/include/**",
+        "/home/default/catkin_ws/src/gazebo_ros_pkgs/gazebo_ros_control/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}

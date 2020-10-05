@@ -5,7 +5,7 @@
     <xacro:include filename="$(find pinnaBot_description)/urdf/Pinna_bot.gazebo" />
     <xacro:include filename="$(find pinnaBot_description)/urdf/materials.xacro" />
     <xacro:include filename="$(find pinnaBot_description)/urdf/macros.xacro" />
-    <!--Links o partes-->
+    <!--Links o partes Chasis-->
     <link name="link_chassis">
 
         <!-- pose and inertial -->
@@ -58,7 +58,44 @@
         </visual>
 
     </link>
-  
+    
+    <!--Link and joints caster-->
+      <link name="caster_wheel">
+        <visual>
+          <origin xyz="0.000144427 -0.339338 0.0196718" rpy="1.62908 -1.92956e-16 0.00209807" />
+          <geometry>
+            <mesh filename="package://pinnaBot_description/meshes/caster_wheel.dae"/>
+          </geometry>
+        </visual>
+        <collision>
+          <origin xyz="0.000144427 -0.339338 0.0196718" rpy="1.62908 -1.92956e-16 0.00209807" />
+          <geometry>
+            <mesh filename="package://pinnaBot_description/meshes/caster_wheel.dae"/>
+          </geometry>
+        </collision>
+        <visual>
+          <origin xyz="1.35032e-16 -0.2705 0.0375708" rpy="2.98515e-15 -1.92956e-16 0.00209807" />
+          <geometry>
+            <mesh filename="package://pinnaBot_description/meshes/caster_axis_support.dae"/>
+          </geometry>
+        </visual>
+        <collision>
+        <origin xyz="1.35032e-16 -0.2705 0.0375708" rpy="2.98515e-15 -1.92956e-16 0.00209807" />
+        <geometry>
+          <mesh filename="package://pinnaBot_description/meshes/caster_axis_support.dae"/>
+        </geometry>
+        </collision>
+        <visual>
+          <origin xyz="1.35308e-16 -0.2705 0.037685" rpy="0 -0 0" />
+          <geometry>
+            <mesh filename="package://pinnaBot_description/meshes/caster_base.dae"/>
+          </geometry>
+        </visual>
+      </link>
+
+
+
+    <!--Links Wheels-->
     <link name="link_right_wheel">
 
         <inertial>
@@ -135,7 +172,7 @@
           </geometry>
         </collision>
 
-        <visual>
+        <visualrevolute>
           <origin xyz="0 0 0" rpy="0 0 -3.14"/>
           <geometry>
             <mesh filename="package://pinnaBot_description/meshes/RPLidar.dae"/>
@@ -205,6 +242,12 @@
 
 
     <!--Joints o uniones-->
+    <joint name="joint_caster" type="fixed">
+          <origin rpy="0 0 0" xyz="0 0.05 0"/>
+          <parent link="link_chassis" />
+          <child link="caster_base" />
+    </joint>
+
     <joint name="joint_right_wheel" type="continuous">
           <origin rpy="0 0 0" xyz="0.122 0.085 0.026"/>
           <child link="link_right_wheel"/>

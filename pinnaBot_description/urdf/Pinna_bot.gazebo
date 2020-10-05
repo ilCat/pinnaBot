@@ -1,51 +1,91 @@
 <?xml version="1.0"?>
 <robot>
+  <!--
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/pinna_bot</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  -->
+  
 
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <legacyMode>false</legacyMode>
       <alwaysOn>true</alwaysOn>
       <updateRate>10</updateRate>
-      <leftJoint>joint_left_wheel</leftJoint>
-      <rightJoint>joint_right_wheel</rightJoint>
-      <wheelSeparation>0.22</wheelSeparation>
-      <wheelDiameter>0.11</wheelDiameter>
-      <torque>0.03</torque>
+      <leftJoint>joint_wheel_left</leftJoint>
+      <rightJoint>joint_wheel_right</rightJoint>
+      <wheelSeparation>0.21</wheelSeparation>
+      <wheelDiameter>0.115</wheelDiameter>
+      <torque>0.018</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>link_chassis</robotBaseFrame>
+      <robotBaseFrame>link_chasis</robotBaseFrame> <!--base_footprintlink_chasis -->
     </plugin>
   </gazebo>
-  <!--
-  <gazebo reference="link_chassis">
-    <material>Gazebo/Black</material>
+
+  <!--Physical constants-->
+
+  <gazebo reference="link_wheel_right">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
   </gazebo>
 
-  <gazebo reference="link_right_wheel">
-    <material>Gazebo/Yellow</material>
+  <gazebo reference="link_wheel_left">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
   </gazebo>
 
-  <gazebo reference="link_left_wheel">
-    <material>Gazebo/Yellow</material>
+  <gazebo reference="link_caster_wheel">
+    <mu1>0.3</mu1>
+    <mu2>0.3</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
   </gazebo>
 
-  <gazebo reference="ultrasonido_link_front">
-    <material>Gazebo/Yellow</material>
-  </gazebo>
-  <gazebo reference="ultrasonido_link_left">
-    <material>Gazebo/Yellow</material>
-  </gazebo>
-  <gazebo reference="ultrasonido_link_right">
-    <material>Gazebo/Yellow</material>
-  </gazebo>
 
-  -->
+  <!--Plugin IMU-->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>imu_topic</topic>
+      <plugin  name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <topicName>pinna_bot/imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>true</initialOrientationAsReference><!--false-->
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
 
   <!--Plugin Camara-->
   <gazebo reference="camera_link">
-    <sensor type="camera" name="camera1">
-      <update_rate>30.0</update_rate>
+    <sensor type="camera" name="camara">
+      <update_rate>20.0</update_rate>
       <camera name="head">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
@@ -61,7 +101,7 @@
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>Pinna_bot/camera1</cameraName>
+        <cameraName>pinna_bot/camara</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_link</frameName>
@@ -75,6 +115,7 @@
     </sensor>
   </gazebo>
 
+ 
   <!--Plugin Lidar-->
   <gazebo reference="lidar_link">
     <sensor type="ray" name="head_hokuyo_sensor">
@@ -86,8 +127,8 @@
           <horizontal>
             <samples>720</samples>
             <resolution>1</resolution>
-            <min_angle>-1.57</min_angle>
-            <max_angle>1.57</max_angle>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -103,39 +144,41 @@
       </ray>
 
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/Pinna_bot/laser/scan</topicName>
+        <topicName>pinna_bot/laser/scan</topicName>
         <frameName>lidar_link</frameName>
       </plugin>
     </sensor>
   </gazebo>
 
+
+
   <!--Plugin Ultrasonidos-->
   <arg name="visual" default="false"/> 
   <arg name="sampls" default="5"/>
-  <arg name="resolusion" default="1"/>
+  <arg name="resolution" default="1"/>
   <arg name="anguloMin" default="-0.1"/><!--angulos en radianes-->
   <arg name="anguloMax" default="0.1"/><!--angulos en radianes-->
-  <arg name="rangoMin" default="0.02"/><!--distancia en Metros-->
-  <arg name="rangoMinLR" default="0.03"/><!--es distinto del original 0.02 por que me chocaba con collition chasis-->
+  <arg name="rangoMin" default="0.03"/><!--distancia en Metros-->
+  <arg name="rangoMinLR" default="0.055"/><!--es distinto del original 0.02 por que me chocaba con collition chasis-->
   <arg name="rangoMax" default="4.0"/><!--distancia en Metros-->
-  <arg name="resolusionRango" default="0.01"/>
-  <arg name="TiempoDeRefresco" default="10"/>
+  <arg name="resolutionRango" default="0.01"/>
+  <arg name="UpDateRate" default="10"/>
                     <!--FRONT-->
-  <gazebo reference="ultrasonido_link_front">
+  <gazebo reference="sonar_front_link">
     <sensor type="ray" name="sonar">
-        <update_rate>$(arg TiempoDeRefresco)</update_rate>
+        <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
           <scan>
             <horizontal>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </horizontal>
             <vertical>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </vertical>
@@ -143,37 +186,37 @@
           <range>
             <min>$(arg rangoMin)</min>
             <max>$(arg rangoMax)</max>
-            <resolution>$(arg resolusionRango)</resolution>
+            <resolution>$(arg resolutionRango)</resolution>
           </range>
         </ray>
 
         <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
           <gaussianNoise>0.005</gaussianNoise>
           <alwaysOn>true</alwaysOn>
-          <updateRate>$(arg TiempoDeRefresco)</updateRate>
-          <topicName>Pinna_bot/sonar/1</topicName>
-          <frameName>ultrasonido_link_front</frameName>
+          <updateRate>$(arg UpDateRate)</updateRate>
+          <topicName>pinna_bot/sonar/1</topicName>
+          <frameName>sonar_front_link</frameName>
           <fov>0.5</fov>
           <radiation>ultrasound</radiation>
         </plugin>
     </sensor>
   </gazebo>
                     <!--LEFT-->
-  <gazebo reference="ultrasonido_link_left">
+  <gazebo reference="sonar_left_link">
     <sensor type="ray" name="sonar">
-        <update_rate>$(arg TiempoDeRefresco)</update_rate>
+        <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
           <scan>
             <horizontal>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </horizontal>
             <vertical>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </vertical>
@@ -181,37 +224,37 @@
           <range>
             <min>$(arg rangoMinLR)</min>
             <max>$(arg rangoMax)</max>
-            <resolution>$(arg resolusionRango)</resolution>
+            <resolution>$(arg resolutionRango)</resolution>
           </range>
         </ray>
 
         <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
           <gaussianNoise>0.005</gaussianNoise>
           <alwaysOn>true</alwaysOn>
-          <updateRate>$(arg TiempoDeRefresco)</updateRate>
-          <topicName>Pinna_bot/sonar/2</topicName>
-          <frameName>ultrasonido_link_left</frameName>
+          <updateRate>$(arg UpDateRate)</updateRate>
+          <topicName>pinna_bot/sonar/2</topicName>
+          <frameName>sonar_left_link</frameName>
           <fov>0.5</fov>
           <radiation>ultrasound</radiation>
         </plugin>
     </sensor>
   </gazebo>
                     <!--RIGHT-->
-  <gazebo reference="ultrasonido_link_right">
+  <gazebo reference="sonar_right_link">
     <sensor type="ray" name="sonar">
-        <update_rate>$(arg TiempoDeRefresco)</update_rate>
+        <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
           <scan>
             <horizontal>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </horizontal>
             <vertical>
               <samples>$(arg sampls)</samples>
-              <resolution>$(arg resolusion)</resolution>
+              <resolution>$(arg resolution)</resolution>
               <min_angle>$(arg anguloMin)</min_angle>
               <max_angle>$(arg anguloMax)</max_angle>
             </vertical>
@@ -219,23 +262,20 @@
           <range>
             <min>$(arg rangoMinLR)</min>
             <max>$(arg rangoMax)</max>
-            <resolution>$(arg resolusionRango)</resolution>
+            <resolution>$(arg resolutionRango)</resolution>
           </range>
         </ray>
 
         <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
           <gaussianNoise>0.005</gaussianNoise>
           <alwaysOn>true</alwaysOn>
-          <updateRate>$(arg TiempoDeRefresco)</updateRate>
-          <topicName>Pinna_bot/sonar/3</topicName>
-          <frameName>ultrasonido_link_raight</frameName>
+          <updateRate>$(arg UpDateRate)</updateRate>
+          <topicName>pinna_bot/sonar/3</topicName>
+          <frameName>sonar_right_link</frameName>
           <fov>0.5</fov>
           <radiation>ultrasound</radiation>
         </plugin>
     </sensor>
   </gazebo>
-
-
-
 
 </robot>

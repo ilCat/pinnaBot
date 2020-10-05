@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <include file="$(find pinnabot_gazebo)/launch/test_willow.launch">
+    </include>
+    <!-- Load Sonar node -->
+    <node name="sonar_collision_test" pkg="pinnabot_example" type="sonar_collision_test.py" output="screen">
+    </node>
+</launch>

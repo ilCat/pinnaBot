@@ -1,0 +1,26 @@
+<launch>
+  <param name="robot_description" command="cat $(find pinnabot_description)/urdf/Pinna_bot.xacro"/>
+  
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find pinnabot_control)/config/pinnabot_control.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/pinna_bot" args="joint_state_controller wheelRight_velocity_controller wheelLeft_velocity_controller">
+  </node>
+
+  <!-- Load twist-to-control node -->
+  <node name="twist_to_control" pkg="pinnabot_control" type="twist_to_control.py"  output="screen">
+  <!--add parameter-->
+  </node>
+
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/pinna_bot/joint_states" />
+  </node>
+
+  <!--Show in Rviz 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pinnabot_description)/launch/rviz.launch"/>-->
+
+</launch>
