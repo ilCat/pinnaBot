@@ -157,11 +157,11 @@
   <arg name="visual" default="false"/> 
   <arg name="sampls" default="5"/>
   <arg name="resolution" default="1"/>
-  <arg name="anguloMin" default="-0.1"/><!--angulos en radianes-->
-  <arg name="anguloMax" default="0.1"/><!--angulos en radianes-->
-  <arg name="rangoMin" default="0.03"/><!--distancia en Metros-->
-  <arg name="rangoMinLR" default="0.055"/><!--es distinto del original 0.02 por que me chocaba con collition chasis-->
-  <arg name="rangoMax" default="4.0"/><!--distancia en Metros-->
+  <arg name="anguloMin" default="-0.1"/><!--angle in radians-->
+  <arg name="anguloMax" default="0.1"/><!--angle in radians-->
+  <arg name="rangoMin" default="0.03"/><!--dist in meters-->
+  <arg name="rangoMinLR" default="0.055"/><!--dist in meters-->
+  <arg name="rangoMax" default="4.0"/><!--dist in meters-->
   <arg name="resolutionRango" default="0.01"/>
   <arg name="UpDateRate" default="10"/>
                     <!--FRONT-->

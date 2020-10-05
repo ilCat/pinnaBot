@@ -38,4 +38,4 @@ instrucciones de uso
     En Rviz, agregar una ''Camera'' ir a  ''Image Topic'' y selesccionar  /rrbot/camera1/image_raw
     o
     En otra pantalla:
-        rosrun image_view image_view image:=/Pinna_bot/camera1/image_raw
+        rosrun image_view image_view image:=/pinna_bot/camera1/image_raw
