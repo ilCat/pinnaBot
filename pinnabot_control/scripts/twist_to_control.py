@@ -27,8 +27,8 @@ def Transform(dx,dr):
     left = vel_wheel_left / (wheel_radius * wheel_radius_multiplier)
     right = vel_wheel_right / (wheel_radius * wheel_radius_multiplier)
 
-    rospy.loginfo("publishing: (%d, %d)", left, right) 
-    rospy.loginfo("param wheel_radius_multiplier wheel_separation_multiplier: (%d, %d)", wheel_radius_multiplier, wheel_separation_multiplier)
+    #rospy.loginfo("publishing: (%d, %d)", left, right) 
+    #rospy.loginfo("param wheel_radius_multiplier wheel_separation_multiplier: (%d, %d)", wheel_radius_multiplier, wheel_separation_multiplier)
                 
     pub_lmotor.publish(left)
     pub_rmotor.publish(right)
