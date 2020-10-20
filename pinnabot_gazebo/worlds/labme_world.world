@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<sdf version='1.4'>
+  <world name='labme_world'>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://labmeLayout</uri>
+      <name>walls</name>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_1</name>
+      <pose>1.8 0.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_1</name>
+      <pose>1.8 0.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_2</name>
+      <pose>2.8 5.4 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_3</name>
+      <pose>2.8 3.8 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_4</name>
+      <pose>0.9 5.5 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_5</name>
+      <pose>0.9 4 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_6</name>
+      <pose>-0.9 5.5 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_7</name>
+      <pose>-0.9 4 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_8</name>
+      <pose>-2.8 5.4 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_9</name>
+      <pose>-2.8 3.8 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://table</uri>
+      <name>table_10</name>
+      <pose>-2.8 2.25 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://cafe_table</uri>
+      <name>table_abb</name>
+      <pose>-1.9 2 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://youbot</uri>
+      <name>kuka_mecanun</name>
+      <pose>-0.95 3.6 1.2 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://turtlebot</uri>
+      <name>turtlebot</name>
+      <pose>-0.95 4.3 1.1 0 0 0</pose>
+    </include>
+    
+    
+    <model name="armchair_1"> 
+      <pose>-2.1 1.1 0.89 0 0 0</pose>
+
+      <link name='armchair'>
+        <pose frame=''>0 -0 0 0 -0 0</pose>
+        <visual name='armchair_1_Visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.2 0.59 1.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='armchair_1_Collision'>
+          <geometry>
+            <box>
+              <size>2.2 0.59 1.8</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0 0 0 0</pose>
+        </collision>
+        </link>      
+    </model>
+    
+
+    <model name="armchair_2"> 
+      <pose>2.1 1.6 0.89 0 0 0</pose>
+
+      <link name='armchair2'>
+        <pose frame=''>0 -0 0 0 -0 0</pose>
+        <visual name='armchair_2_Visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>2.2 0.59 1.8</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <collision name='armchair_2_Collision'>
+          <geometry>
+            <box>
+              <size>2.2 0.59 1.8</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0 0 0 0</pose>
+        </collision>
+        </link>      
+    </model>
+
+    <scene>
+      <grid>0</grid>
+      <origin_visual>0</origin_visual>
+    </scene>
+  </world>
+</sdf>

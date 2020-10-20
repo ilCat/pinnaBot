@@ -12,5 +12,62 @@
       <name>gas_station</name>
       <pose>-2.0 7.0 0 0 0 0</pose>
     </include>
+    <include>
+      <uri>model://construction_barrel</uri>
+      <name>construction_barrel</name>
+      <pose>-10.0 -1.0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://construction_cone</uri>
+      <name>construction_cone1</name>
+      <pose>7.7 1.6 0 0 0 0.75</pose>
+    </include>
+    <include>
+      <uri>model://jersey_barrier</uri>
+      <name>jersey_barrier_1</name>
+      <pose>8.6 0 0 0 0 1.56</pose>
+    </include>
+    <include>
+      <uri>model://dumpster</uri>
+      <name>dumpster_1</name>
+      <pose>-10.0 0.6 0 0 0 1.57</pose>
+    </include>
+    <include>
+      <uri>model://suv</uri>
+      <name>suv_1</name>
+      <pose>-10.0 -8.0 0 0 0 0.75</pose>
+    </include>
+    <include>
+      <uri>model://asphalt_plane</uri>
+      <name>asphalt_plane</name>
+      <pose>-1.73 -5.0 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://jersey_barrier</uri>
+      <name>jersey_barrier_2</name>
+      <pose>2.7 -14.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://jersey_barrier</uri>
+      <name>jersey_barrier_3</name>
+      <pose>-1.3 -14.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://jersey_barrier</uri>
+      <name>jersey_barrier_4</name>
+      <pose>-5.5 -14.5 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://jersey_barrier</uri>
+      <name>jersey_barrier_5</name>
+      <pose>-9.5 -14.5 0 0 0 0</pose>
+    </include>
+    <scene>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
   </world>
 </sdf>
