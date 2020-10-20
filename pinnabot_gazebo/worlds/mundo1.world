@@ -68,6 +68,8 @@
           <speed>12</speed>
         </clouds>
       </sky>
+      <grid>0</grid>
+      <origin_visual>0</origin_visual>
     </scene>
   </world>
 </sdf>
