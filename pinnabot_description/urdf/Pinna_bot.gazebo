@@ -159,7 +159,7 @@
   <arg name="UpDateRate" default="10"/>
                     <!--FRONT-->
   <gazebo reference="sonar_front_link">
-    <sensor type="ray" name="sonar">
+    <sensor type="ray" name="sonar1">
         <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
@@ -197,7 +197,7 @@
   </gazebo>
                     <!--LEFT-->
   <gazebo reference="sonar_left_link">
-    <sensor type="ray" name="sonar">
+    <sensor type="ray" name="sonar2">
         <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
@@ -235,7 +235,7 @@
   </gazebo>
                     <!--RIGHT-->
   <gazebo reference="sonar_right_link">
-    <sensor type="ray" name="sonar">
+    <sensor type="ray" name="sonar3">
         <update_rate>$(arg UpDateRate)</update_rate>
         <visualize>$(arg visual)</visualize>
         <ray>
