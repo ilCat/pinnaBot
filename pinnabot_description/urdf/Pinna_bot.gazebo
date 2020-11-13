@@ -6,7 +6,7 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/pinna_bot</robotNamespace>
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-      <legacyModeNS>true</legacyModeNS>
+      <legacyModeNS>false</legacyModeNS>
     </plugin>
   </gazebo>
   
@@ -32,7 +32,7 @@
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
-    <fdir1>1 0 0</fdir1>
+    <fdir1>0 1 0</fdir1>
   </gazebo>
 
   <gazebo reference="link_wheel_left">
@@ -42,7 +42,7 @@
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
-    <fdir1>1 0 0</fdir1>
+    <fdir1>0 1 0</fdir1>
   </gazebo>
 
   <gazebo reference="link_caster_wheel">
@@ -51,7 +51,7 @@
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
-    <maxVel>1.0</maxVel>
+    <maxVel>0.1</maxVel>
   </gazebo>
 
 
