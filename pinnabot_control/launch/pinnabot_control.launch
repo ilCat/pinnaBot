@@ -20,6 +20,9 @@
     <remap from="/joint_states" to="/pinna_bot/joint_states" />
   </node>
 
+
+  <!--Run the odometry-->
+  <node name="odom_pub" pkg="pinnabot_control" type="odom.py" output="screen" />
   <!--Show in Rviz 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pinnabot_description)/launch/rviz.launch"/>-->
 

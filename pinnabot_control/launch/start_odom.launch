@@ -1,0 +1,3 @@
+<launch>
+    <node name="odom_pub" pkg="pinnabot_control" type="odom.py" output="screen" />
+</launch>
