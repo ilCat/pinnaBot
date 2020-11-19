@@ -13,8 +13,8 @@ def clbk_twist(msg):
 def Transform(dx,dr):
     right = 0.0
     left = 0.0
-    wheel_separation = 0.21  #Dist betwen wheels [m] 
-    wheel_radius=0.575 #Wheel radius [m]
+    wheel_separation = 0.24  #Dist betwen wheels [m] 
+    wheel_radius=0.043 #Wheel radius [m]
 
     # dx = (l + r) / 2
     # dr = (r - l) / w
