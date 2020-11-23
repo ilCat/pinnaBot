@@ -159,6 +159,10 @@
 
     <!-- Camera -->
     <link name="camera_link">
+    <pose>0 0 0 1.57 0 -1.57</pose>
+    </link>
+
+    <link name="camera_real_link">
 
       <collision>
         <origin xyz="0 0 0" rpy="1.57 0 -1.57"/>
@@ -336,9 +340,16 @@
           <parent link="link_chassis_root"/>
     </joint>
 
+
     <joint name="joint_camera" type="fixed">
           <origin rpy="0 0 1.57" xyz="0 0.155 0.130"/>
           <parent link="link_chassis_root"/>
+          <child link="camera_real_link"/>
+    </joint>
+
+    <joint name="joint_camera_fake" type="fixed">
+          <origin rpy="0 -0.053 0" xyz="0 0 0"/>
+          <parent link="camera_real_link"/>
           <child link="camera_link"/>
     </joint>
 

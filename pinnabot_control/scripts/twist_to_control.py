@@ -14,7 +14,7 @@ def Transform(dx,dr):
     right = 0.0
     left = 0.0
     wheel_separation = 0.24  #Dist betwen wheels [m] 
-    wheel_radius=0.043 #Wheel radius [m]
+    wheel_radius=0.0438 #Wheel radius [m]
 
     # dx = (l + r) / 2
     # dr = (r - l) / w
@@ -47,8 +47,8 @@ def main():
     
     wheel_radius_multiplier = None
     wheel_separation_multiplier = None
-    wheel_separation_multiplier = rospy.get_param("/pinna_bot/twist_to_control/wheel_separation_multiplier", 1.0)
-    wheel_radius_multiplier = rospy.get_param("/pinna_bot/twist_to_control/wheel_radius_multiplier", 1.0)
+    wheel_separation_multiplier = rospy.get_param("/pinna_bot/twist_to_control_parameter/wheel_separation_multiplier", 1.0)
+    wheel_radius_multiplier = rospy.get_param("/pinna_bot/twist_to_control_parameter/wheel_radius_multiplier", 1.0)
     
     pub_lmotor = rospy.Publisher('/pinna_bot/wheelLeft_velocity_controller/command', Float64,queue_size=1)
     pub_rmotor = rospy.Publisher('/pinna_bot/wheelRight_velocity_controller/command', Float64,queue_size=1)

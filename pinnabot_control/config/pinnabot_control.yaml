@@ -2,7 +2,7 @@ pinna_bot:
   # Publish all joint states ----------------------------------
   joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 50  
+    publish_rate: 30  
 
   # Velocity controller ---------------------------------------
   wheelLeft_velocity_controller:
@@ -17,5 +17,5 @@ pinna_bot:
   
   #Interface twist_to_control parameter -----------------------
   twist_to_control_parameter:
-    wheel_separation_multiplier: 1.0 #Dist betwen wheel MULTIPLIER
-    wheel_radius_multiplier: 1.0 #Wheel radius MULTIPLIER
+    wheel_separation_multiplier: 1.07 #Dist betwen wheel MULTIPLIER
+    wheel_radius_multiplier: 0.98 #Wheel radius MULTIPLIER

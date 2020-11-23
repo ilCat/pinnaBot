@@ -82,15 +82,15 @@
     <sensor type="camera" name="camara">
       <update_rate>20.0</update_rate>
       <camera name="head">
-        <horizontal_fov>1.3962634</horizontal_fov>
+        <horizontal_fov>1.27409</horizontal_fov><!--angle in radians 1.3962634-->
         <image>
-            <width>1920</width>
-            <height>1080</height>
+            <width>1280</width>
+            <height>750</height>
             <format>R8G8B8</format>
         </image>
         <clip>
-          <near>0.02</near>
-          <far>300</far>
+          <near>0.01</near>
+          <far>5</far>
         </clip>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
@@ -150,8 +150,10 @@
   <arg name="visual" default="false"/> 
   <arg name="sampls" default="5"/>
   <arg name="resolution" default="1"/>
-  <arg name="anguloMin" default="-0.1"/><!--angle in radians-->
-  <arg name="anguloMax" default="0.1"/><!--angle in radians-->
+  <arg name="anguloMin" default="-0.3"/><!--angle in radians-->
+  <arg name="anguloMax" default="0.3"/><!--angle in radians-->
+  <arg name="anguloMinV" default="-0.05"/><!--angle in radians-->
+  <arg name="anguloMaxV" default="0.05"/><!--angle in radians-->
   <arg name="rangoMin" default="0.03"/><!--dist in meters-->
   <arg name="rangoMinLR" default="0.055"/><!--dist in meters-->
   <arg name="rangoMax" default="4.0"/><!--dist in meters-->
@@ -173,8 +175,8 @@
             <vertical>
               <samples>$(arg sampls)</samples>
               <resolution>$(arg resolution)</resolution>
-              <min_angle>$(arg anguloMin)</min_angle>
-              <max_angle>$(arg anguloMax)</max_angle>
+              <min_angle>$(arg anguloMinV)</min_angle>
+              <max_angle>$(arg anguloMaxV)</max_angle>
             </vertical>
           </scan>
           <range>
@@ -211,8 +213,8 @@
             <vertical>
               <samples>$(arg sampls)</samples>
               <resolution>$(arg resolution)</resolution>
-              <min_angle>$(arg anguloMin)</min_angle>
-              <max_angle>$(arg anguloMax)</max_angle>
+              <min_angle>$(arg anguloMinV)</min_angle>
+              <max_angle>$(arg anguloMaxV)</max_angle>
             </vertical>
           </scan>
           <range>
@@ -249,8 +251,8 @@
             <vertical>
               <samples>$(arg sampls)</samples>
               <resolution>$(arg resolution)</resolution>
-              <min_angle>$(arg anguloMin)</min_angle>
-              <max_angle>$(arg anguloMax)</max_angle>
+              <min_angle>$(arg anguloMinV)</min_angle>
+              <max_angle>$(arg anguloMaxV)</max_angle>
             </vertical>
           </scan>
           <range>

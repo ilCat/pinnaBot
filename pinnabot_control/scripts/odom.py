@@ -19,7 +19,7 @@ header.frame_id = '/odom'
 model = GetModelStateRequest()
 model.model_name = 'pinna_bot'
 
-r = rospy.Rate(2)
+r = rospy.Rate(10)
 
 while not rospy.is_shutdown():
     result = get_model_srv(model)
