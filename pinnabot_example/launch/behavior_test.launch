@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find pinnabot_gazebo)/launch/test_GasStation.launch">
+  </include>
+
+  <!--Run plot-->
+  <node name="rqt_gui" pkg="rqt_gui" type="rqt_gui" output="screen"/>
+
+  <!--Run Node keyboard control-->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+  
+</launch>
