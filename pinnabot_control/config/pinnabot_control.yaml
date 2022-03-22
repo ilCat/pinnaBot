@@ -2,7 +2,7 @@ pinna_bot:
   # Publish all joint states ----------------------------------
   joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 30  
+    publish_rate: 50  
 
   # Velocity controller ---------------------------------------
   wheelLeft_velocity_controller:

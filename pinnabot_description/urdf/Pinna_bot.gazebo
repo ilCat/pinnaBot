@@ -24,10 +24,10 @@
   </gazebo>
   -->
   <!--Physics constants-->
-
+  <arg name="muWheel" default="0.8"/> 
   <gazebo reference="link_wheel_right">
-    <mu1>0.6</mu1>
-    <mu2>0.6</mu2>
+    <mu1>$(arg muWheel)</mu1>
+    <mu2>$(arg muWheel)</mu2>
     <kp>500000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
@@ -36,13 +36,13 @@
   </gazebo>
 
   <gazebo reference="link_wheel_left">
-    <mu1>0.6</mu1>
-    <mu2>0.6</mu2>
+    <mu1>$(arg muWheel)</mu1>
+    <mu2>$(arg muWheel)</mu2>
     <kp>500000.0</kp>
     <kd>10.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>0.1</maxVel>
-    <fdir1>0 1 0</fdir1>
+    <fdir1>0 -1 0</fdir1>
   </gazebo>
 
   <gazebo reference="link_caster_wheel">
@@ -90,8 +90,14 @@
         </image>
         <clip>
           <near>0.01</near>
-          <far>5</far>
+          <far>50</far>
         </clip>
+        <depth_camera>
+          <clip>
+            <near>0.01</near>
+            <far>7</far>
+          </clip>
+        </depth_camera>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
@@ -158,7 +164,7 @@
   <arg name="rangoMinLR" default="0.055"/><!--dist in meters-->
   <arg name="rangoMax" default="4.0"/><!--dist in meters-->
   <arg name="resolutionRango" default="0.01"/>
-  <arg name="UpDateRate" default="10"/>
+  <arg name="UpDateRate" default="20"/>
                     <!--FRONT-->
   <gazebo reference="sonar_front_link">
     <sensor type="ray" name="sonar1">

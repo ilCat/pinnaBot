@@ -50,8 +50,8 @@ def main():
     wheel_separation_multiplier = rospy.get_param("/pinna_bot/twist_to_control_parameter/wheel_separation_multiplier", 1.0)
     wheel_radius_multiplier = rospy.get_param("/pinna_bot/twist_to_control_parameter/wheel_radius_multiplier", 1.0)
     
-    pub_lmotor = rospy.Publisher('/pinna_bot/wheelLeft_velocity_controller/command', Float64,queue_size=1)
-    pub_rmotor = rospy.Publisher('/pinna_bot/wheelRight_velocity_controller/command', Float64,queue_size=1)
+    pub_lmotor = rospy.Publisher('/pinna_bot/wheelLeft_velocity_controller/command', Float64,queue_size=50)
+    pub_rmotor = rospy.Publisher('/pinna_bot/wheelRight_velocity_controller/command', Float64,queue_size=50)
     sub = rospy.Subscriber('/cmd_vel',Twist ,clbk_twist)
 
     rospy.spin()

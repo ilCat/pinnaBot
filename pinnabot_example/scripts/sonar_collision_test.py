@@ -12,8 +12,8 @@ class SonarSensorRange():
         nodename = rospy.get_name()
         rospy.loginfo("%s started" % nodename)
 
-        self.vx = 0.8
-        self.wz = 1.3
+        self.vx = 0.15
+        self.wz = 0.5
         self.sf = 0.0
         self.sl = 0.0
         self.sr = 0.0
@@ -46,18 +46,18 @@ class SonarSensorRange():
 
         if self.sf < self.sl:
             if self.sf < self.sr:
-                if self.sf < 0.5:
+                if self.sf < 0.4:
                     self.state_description = 'Turn Left SF'
-                    self.linear_x = self.vx - 0.4
+                    self.linear_x = self.vx - 0.1
                     self.angular_z = self.wz
         elif self.sl < self.sr:
-            if self.sl < 0.5:
+            if self.sl < 0.4:
                 self.state_description = 'Turn Rigth SL'
-                self.linear_x = self.vx - 0.4
+                self.linear_x = self.vx - 0.1
                 self.angular_z = -self.wz
-        if self.sr < 0.5:
+        if self.sr < 0.4:
             self.state_description = 'Turn Left SF lallal'
-            self.linear_x = self.vx - 0.4
+            self.linear_x = self.vx - 0.1
             self.angular_z = self.wz
         else:
             self.state_description = 'Forward'
