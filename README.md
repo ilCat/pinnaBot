@@ -55,7 +55,7 @@ It's convenient if the ROS environment variables are automatically added to your
  # Example
 To run an example you must run the command:
 
-`   roslaunch pinnabot_example sonar_test.launchroslaunch pinnabot_example sonar_test.launch`
+`   roslaunch pinnabot_example sonar_test.launch`
  
  It's an example of an application of an algorithm to avoid obstacles with 3 sonar sensors.
  
